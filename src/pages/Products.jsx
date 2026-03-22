@@ -16,7 +16,7 @@ const Products = () => {
     <div className=' grid grid-cols-3 gap-4 m-4'>
          {products.map(product=>{
     return (
-      <div className='border rounded-xl flex flex-col p-4 gap-2'>
+      <div className='border rounded-xl flex flex-col p-4 gap-2 bg-white'>
         <div key={product.id} className='font-bold text-center text-xl'>{product.name}</div>
         <div>{product.description}</div>
         <div className='flex justify-between'>
