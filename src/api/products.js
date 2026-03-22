@@ -1,56 +1,23 @@
 export const items = [
-  {
-    id: 1,
-    name: "MacBook Pro 14",
-    category: "Laptop",
-    price: 185000,
-    description: "Apple M3 Pro chip, 16GB RAM, 512GB SSD. Ideal for developers and designers.Ideal for developers and designers.",
-    status: "Active",
-    stock: 12
-  },
-  {
-    id: 2,
-    name: "iPhone 15",
-    category: "Mobile",
-    price: 79900,
-    description: "Apple iPhone 15 with A16 Bionic chip and 48MP camera system.Ideal for developers and designers.",
-    status: "Active",
-    stock: 25
-  },
-  {
-    id: 3,
-    name: "Samsung Galaxy S24",
-    category: "Mobile",
-    price: 74999,
-    description: "Flagship Android smartphone with Snapdragon processor and AMOLED display.Ideal for developers and designers.",
-    status: "Out of stock",
-    stock: 18
-  },
-  {
-    id: 4,
-    name: "Dell XPS 13",
-    category: "Laptop",
-    price: 120000,
-    description: "Ultra-light laptop with Intel Core i7 processor and 16GB RAM.Ideal for developers and designers.",
-    status: "Out of stock",
-    stock: 5
-  },
-  {
-    id: 5,
-    name: "Sony WH-1000XM5",
-    category: "Headphones",
-    price: 29999,
-    description: "Premium noise-cancelling wireless headphones with 30-hour battery life.Ideal for developers and designers.",
-    status: "Active",
-    stock: 30
-  },
-  {
-    id: 6,
-    name: "Apple Watch Series 9",
-    category: "Smartwatch",
-    price: 45900,
-    description: "Advanced health tracking smartwatch with ECG and fitness monitoring.Ideal for developers and designers.",
-    status: "Active",
-    stock: 20
-  }
+  { id:1,  name:"AirPods Pro Max",      sku:"APP-001", category:"Electronics",    price:549.99, stock:85,  status:"Active"       },
+  { id:2,  name:"Nike Air Max 270",     sku:"NAM-270", category:"Clothing",       price:149.99, stock:210, status:"Active"       },
+  { id:3,  name:"KitchenAid Mixer",     sku:"KSM-150", category:"Home & Kitchen", price:379.00, stock:0,   status:"Out of Stock" },
+  { id:4,  name:"Sony WH-1000XM5",      sku:"SWH-XM5", category:"Electronics",   price:399.99, stock:56,  status:"Active"       },
+  { id:5,  name:"Yoga Mat Premium",     sku:"YMP-006", category:"Sports",         price:89.99,  stock:144, status:"Active"       },
+  { id:6,  name:"Atomic Habits",        sku:"BK-AH01", category:"Books",          price:19.99,  stock:320, status:"Active"       },
+  { id:7,  name:"LEGO Technic Set",     sku:"LGO-421", category:"Toys",           price:229.99, stock:35,  status:"Active"       },
+  { id:8,  name:"Retinol Serum 30ml",   sku:"BS-R30",  category:"Beauty",         price:64.99,  stock:0,   status:"Out of Stock" },
+  { id:9,  name:"DJI Mini 3 Pro",       sku:"DJI-M3P", category:"Electronics",   price:759.00, stock:12,  status:"In Review"    },
+  { id:10, name:"Patagonia Fleece",     sku:"PTG-FLJ", category:"Clothing",       price:189.99, stock:67,  status:"Active"       },
+  { id:11, name:"Instant Pot Duo",      sku:"IPD-701", category:"Home & Kitchen", price:99.95,  stock:130, status:"Active"       },
+  { id:12, name:"Garmin Forerunner",    sku:"GFR-955", category:"Sports",         price:499.99, stock:28,  status:"Active"       },
+  { id:13, name:"Canon EOS R6 II",      sku:"CNR-R6",  category:"Electronics",   price:2499.00,stock:8,   status:"In Review"    },
+  { id:14, name:"YETI Rambler 30oz",    sku:"YTI-R30", category:"Sports",         price:44.99,  stock:0,   status:"Out of Stock" },
+  { id:15, name:"The Lean Startup",     sku:"BK-LS01", category:"Books",          price:17.99,  stock:280, status:"Draft"        },
+  { id:16, name:"Apple Watch Ultra 2",  sku:"AWU-002", category:"Electronics",   price:799.00, stock:41,  status:"Active"       },
+  { id:17, name:"Barbie Dreamhouse",    sku:"BBR-DH2", category:"Toys",           price:199.99, stock:22,  status:"Draft"        },
+  { id:18, name:"Dyson V15 Detect",     sku:"DSV-15D", category:"Home & Kitchen", price:749.99, stock:19,  status:"Active"       },
+  { id:19, name:"Charlotte Tilbury",    sku:"CTB-P01", category:"Beauty",         price:75.00,  stock:95,  status:"Active"       },
+  { id:20, name:"Bosch Car Battery",    sku:"BSH-B80", category:"Automotive",     price:134.99, stock:60,  status:"Active"       },
+
 ];

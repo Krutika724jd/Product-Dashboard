@@ -7,7 +7,7 @@ const Dashboard = () => {
  //totalValue=sum of price × stock 
  //acc => the result of previous value
  const totalValue=products.reduce((acc,curr)=> acc+ curr.price*curr.stock,0)
- const outOfStock=products.filter(p=>p.status === 'Out of stock').length;
+ const outOfStock=products.filter(p=>p.status === 'Out of Stock').length;
  const categories= new Set(products.map(p=>p.category)).size
 //  const totalCategory=Object.values(categories)
   // console.log(products,categories,totalCategory,outOfStock,totalValue)
