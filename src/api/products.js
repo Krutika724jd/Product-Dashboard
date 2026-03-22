@@ -23,7 +23,7 @@ export const items = [
     category: "Mobile",
     price: 74999,
     description: "Flagship Android smartphone with Snapdragon processor and AMOLED display.Ideal for developers and designers.",
-    status: "Active",
+    status: "Out of stock",
     stock: 18
   },
   {
@@ -32,7 +32,7 @@ export const items = [
     category: "Laptop",
     price: 120000,
     description: "Ultra-light laptop with Intel Core i7 processor and 16GB RAM.Ideal for developers and designers.",
-    status: "Inactive",
+    status: "Out of stock",
     stock: 5
   },
   {
