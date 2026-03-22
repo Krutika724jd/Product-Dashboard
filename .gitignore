@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+src/components/GameBoard.jsx
+src/components/Logs.jsx
+src/components/Player.jsx
+src/components/Tictactoe.jsx

@@ -1,4 +1,4 @@
-import Tictactoe from "./components/Tictactoe"
+// import Tictactoe from "./components/Tictactoe"
 import Approutes from "./routes/Approutes"
 
 function App() {
@@ -6,7 +6,7 @@ function App() {
     <>
     
     
-     
+     {/* <Tictactoe/> */}
       <Approutes/>
     
     </>
