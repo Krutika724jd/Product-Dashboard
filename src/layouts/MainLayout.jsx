@@ -8,13 +8,14 @@ const MainLayout = () => {
     navigate("/")
   }
   const navLinks = [
-    { to: "/dashboard", label: "Home" },
+    { to: "/dashboard", label: "Dashboard" },
     { to: "/dashboard/products", label: "Products" },
     { to: "/dashboard/analytics", label: "Analytics" },
     { to: "/dashboard/categories", label: "Categories" },
     { to: "/dashboard/orders", label: "Orders" },
     { to: "/dashboard/settings", label: "Settings" },
-  ]
+  ];
+ 
   return (
 <div className="flex h-screen bg-gray-50">
 
@@ -70,10 +71,14 @@ const MainLayout = () => {
             <span className="text-sm text-gray-600">Admin</span>
           </div>
         </div>
-  
-  
+    {/*Page Title*/}
+     <div className='flex gap-5 mx-6 h-10 items-center'>
+      {navLinks.filter(link=> link.label==='Dashboard' || link.label==='Analytics')
+      .map(link=>(<div key={link.label} className={`pb-1 ${location.pathname === link.to? 'text-blue-600 border-b-2 border-blue-700':'border-transparent'}`}>{link.label}</div>))
+      }
+     </div>
      {/* Page Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-6 bg-gray-200">
           <Outlet />
         </div>
   </main>
