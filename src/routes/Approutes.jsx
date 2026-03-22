@@ -20,6 +20,10 @@ const Approutes = () => {
           {/* Child Routes */}
          <Route index element={<Dashboard />} />
          <Route path="products" element={<Products />} />
+         <Route path="analytics" element={<Products />} />
+         <Route path="categories" element={<Products />} />
+         <Route path="orders" element={<Products />} />
+         <Route path="settings" element={<Products />} />
       </Route>
     </Routes>
   )
