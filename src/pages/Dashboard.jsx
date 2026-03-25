@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux"
 import KpiCard from "../components/KpiCard";
+import { useState } from "react";
+import ProductTable from "../components/ProductTable";
 
 const Dashboard = () => {
   const products=useSelector(state=>state.products.items);
@@ -10,7 +12,22 @@ const Dashboard = () => {
  const outOfStock=products.filter(p=>p.status === 'Out of Stock').length;
  const categories= new Set(products.map(p=>p.category)).size
 //  const totalCategory=Object.values(categories)
-  // console.log(products,categories,totalCategory,outOfStock,totalValue)
+  console.log(products,categories,outOfStock,totalValue)
+
+  const [activeFilter, setActiveFilter] = useState('All')
+  const [sortBy, setSortBy]= useState('name')
+  const filters = ['All', 'Active', 'Draft', 'Out of Stock', 'In Review'];
+
+  const filteredItems=products.filter(product=>activeFilter === 'All'||product.status=== activeFilter)
+  .sort((a,b)=>{
+    if(sortBy === 'price-asc') return a.price-b.price
+    if(sortBy === 'price-desc') return b.price-a.price
+    if(sortBy === 'stock')      return b.stock-a.stock
+    return a.name.localeCompare(b.name)
+  }
+  
+)
+  console.log({filteredItems,sortBy})
   return (
     <>
     <div className="flex gap-4">
@@ -39,6 +56,28 @@ const Dashboard = () => {
     <KpiCard label="OUT OF STOCK" value={outOfStock} subText="↑ 3 since last week"/>
     <KpiCard label="CATEGORIES" value={categories} subText="across all products"/>
     </div>
+      {/* Filter Buttons + Sort — stays here, no separate component needed */}
+     <div className="flex gap-5 mt-5 w-full">
+      {filters.map(filter=>(
+        <button key={filter} className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all
+        ${activeFilter === filter
+          ? 'bg-blue-600 text-white border-blue-600'
+          : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'
+        }`}
+        onClick={()=>setActiveFilter(filter)}>{filter}</button>
+      ))}
+     </div>
+
+     {/* sort byt filter*/}
+
+     <select className="mt-4 w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-600 text-sm font-medium" value={sortBy} onChange={(e)=>setSortBy(e.target.value)}>
+      <option value="name">Sort By: Name</option>
+      <option value="price-asc">Price: Low → High</option>
+      <option value="price-desc">Price: High → Low</option>
+      <option value="stock">Stock</option>
+     </select>
+
+     <ProductTable products={filteredItems} onEdit={(p) => console.log(p)}/>
     </>
   )
 }
