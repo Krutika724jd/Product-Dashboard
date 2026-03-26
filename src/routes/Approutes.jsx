@@ -5,6 +5,7 @@ import Products from "../pages/Products";
 import MainLayout from "../layouts/MainLayout";
 import { Routes,Route } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute';
+import Analytics from '../components/Analytics';
 
 const Approutes = () => {
   return (
@@ -20,7 +21,7 @@ const Approutes = () => {
           {/* Child Routes */}
          <Route index element={<Dashboard />} />
          <Route path="products" element={<Products />} />
-         <Route path="analytics" element={<Products />} />
+         <Route path="analytics" element={<Analytics />} />
          <Route path="categories" element={<Products />} />
          <Route path="orders" element={<Products />} />
          <Route path="settings" element={<Products />} />
