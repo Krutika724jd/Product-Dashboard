@@ -13,7 +13,7 @@ const Products = () => {
   return (
     <>
      <h1>Products page</h1>
-    <div className=' grid grid-cols-3 gap-4 m-4'>
+    <div className=' grid lg:grid-cols-3 gap-4 m-4'>
          {products.map(product=>{
     return (
       <div className='border rounded-xl flex flex-col p-4 gap-2 bg-white'>
