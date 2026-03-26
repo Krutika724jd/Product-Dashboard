@@ -7,6 +7,7 @@ import { Routes,Route } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute';
 import Analytics from '../pages/Analytics';
 import Categories from '../pages/Categories';
+import Orders from '../pages/Orders';
 
 const Approutes = () => {
   return (
@@ -24,7 +25,7 @@ const Approutes = () => {
          <Route path="products" element={<Products />} />
          <Route path="analytics" element={<Analytics />} />
          <Route path="categories" element={<Categories />} />
-         <Route path="orders" element={<Products />} />
+         <Route path="orders" element={<Orders />} />
          <Route path="settings" element={<Products />} />
       </Route>
     </Routes>
