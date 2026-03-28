@@ -22,14 +22,14 @@ function Settings() {
     }
     console.log(form,notifications)
   return (
-    <div className="px-6">
+    <div className=" lg:overflow-hidden">
         <div className="text-xl font-semibold mb-6">Settings</div>
-        <div className="grid grid-cols-[200px_1fr] gap-6 ">
-            <div className="flex flex-col gap-1 ">
+        <div className="grid lg:grid-cols-[200px_1fr] gap-6 ">
+            <div className="flex lg:flex-col lg:gap-1 ">
                {tabs.map(tab=>(
                 <button  
                 onClick={()=> setActiveTab(tab)}
-                className={`px-4 py-2.5 rounded-md text-left transtion-all ${activeTab === tab
+                className={`lg:px-4 py-2.5 px-2 rounded-md text-left transtion-all ${activeTab === tab
                   ? 'bg-blue-50 text-blue-600 font-medium'
                   : 'text-gray-500 hover:bg-gray-100'}`}
                 >{tab}</button>

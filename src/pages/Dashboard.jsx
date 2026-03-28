@@ -12,7 +12,7 @@ const Dashboard = () => {
  const totalProducts=products.length;
  //totalValue=sum of price × stock 
  //acc => the result of previous value
- const totalValue=products.reduce((acc,curr)=> acc+ curr.price*curr.stock,0)
+ const totalValue=Math.ceil(products.reduce((acc,curr)=> acc+ curr.price*curr.stock,0))
  const outOfStock=products.filter(p=>p.status === 'Out of Stock').length;
  const categories= new Set(products.map(p=>p.category)).size
 //  const totalCategory=Object.values(categories)
@@ -34,7 +34,7 @@ const Dashboard = () => {
   console.log({filteredItems,sortBy})
   return (
     <>
-    <div className="flex gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {/* <div className="border border-gray-400 rounded-lg flex flex-col gap-2 w-[25%]  p-4 bg-white">
         <div>TOTAL PRODUCTS</div>
         <div className="font-semibold text-4xl">{totalProducts}</div>
@@ -61,9 +61,9 @@ const Dashboard = () => {
     <KpiCard label="CATEGORIES" value={categories} subText="across all products"/>
     </div>
       {/* Filter Buttons + Sort — stays here, no separate component needed */}
-     <div className="flex gap-5 mt-5 w-full">
+     <div className="flex gap-2 lg:gap-5 mt-5 w-full">
       {filters.map(filter=>(
-        <button key={filter} className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all
+        <button key={filter} className={`lg:px-4 lg:py-2 p-2 rounded-lg text-sm font-medium border transition-all
         ${activeFilter === filter
           ? 'bg-blue-600 text-white border-blue-600'
           : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'

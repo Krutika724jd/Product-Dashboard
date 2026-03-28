@@ -26,7 +26,7 @@ function Orders() {
   return (
     <div>
         <div className="text-xl font-semibold mb-6">Orders</div>
-         <div className="grid grid-cols-4 gap-4 mb-6">
+         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[
           { label: 'Total Orders', value: total,     color: 'text-gray-800'   },
           { label: 'Delivered',    value: delivered,  color: 'text-green-600'  },
@@ -54,7 +54,7 @@ function Orders() {
         ))}
       </div>
          {/* Orders Table */}
-          <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+          <div className="bg-white border border-gray-200 rounded-lg overflow-x-scroll">
             <table className="w-full">
                 <thead className="bg-gray-50 border-b border-gray-200">
                      <tr>

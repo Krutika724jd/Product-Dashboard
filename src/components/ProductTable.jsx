@@ -5,7 +5,7 @@ const EMOJI = {
 const TABLEHEADER=['Product', 'Category', 'Price', 'Stock', 'Status', 'Actions'];
 export default function ProductTable({products,onEdit}){
     return(
-        <div className="mt-4 bg-white border border-gray-200 rounded-lg overflow-hidden">
+        <div className="mt-4 bg-white border border-gray-200 rounded-lg overflow-x-scroll lg:overflow-hidden">
            <table className="w-full">
             <thead>
                 <tr>

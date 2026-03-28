@@ -33,7 +33,7 @@ const Products = () => {
   }
   console.log(products)
   return (
-    <div className='px-6'>
+    <div>
      <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold">Products</h2>
         <button
@@ -55,7 +55,7 @@ const Products = () => {
       </div>
 
       {/*Products*/}
-     <div className='bg-white border border-gray-200 rounded-lg overflow-hidden'>
+     <div className='bg-white border border-gray-200 rounded-lg overflow-x-scroll lg:overflow-hidden'>
       <table className='w-full>'>
         <thead className='bg-gray-50 border-b border-gray-200 w-full'>
           <tr className=''>
@@ -72,9 +72,9 @@ const Products = () => {
           ):(
             filtered.map(product=>(
               <tr key={product.id} className="border-b border-gray-100 hover:bg-gray-50 transition-all">
-                <td className="px-4 py-3">
-                  <div className='flex gap-2'>
-                    <div>{EMOJI[product.category] || '📦'}</div>
+                <td >
+                  <div className='flex gap-3 items-center'>
+                    <div className=' ml-3 w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-lg'>{EMOJI[product.category] || '📦'}</div>
                     <div>
                       <div className="font-medium text-sm">{product.name}</div>
                       <div className="text-xs text-gray-400 font-mono">{product.sku}</div>

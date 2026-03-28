@@ -34,7 +34,7 @@ function handleSave(){
     product?dispatch(updateProduct(data)):dispatch(addProduct(data))
 }
   return (
-    <div className="border border-red-400 fixed inset-0 bg-black/40  z-50 flex items-center justify-center"
+    <div className="border fixed inset-0 bg-black/40  z-50 flex items-center justify-center"
     onClick={onClose}>
         <div onClick={e => e.stopPropagation()}
         className="bg-white rounded-xl p-6 w-[500px] max-h-[90vh] overflow-y-auto">
