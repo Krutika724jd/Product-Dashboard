@@ -15,6 +15,7 @@ const BADGE = {
 }
 const Products = () => {
   const products=useSelector((state)=>state.products.items);
+  console.log({products})
   const dispatch=useDispatch()
   const[search,setSearch]=useState('');
   const [modalOpen, setModalOpen] = useState(false)

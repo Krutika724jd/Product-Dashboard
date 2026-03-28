@@ -14,7 +14,8 @@ reducers:{
     state.items=state.items.filter(item=>item.id !== action.payload)
   },
   updateProduct:(state,action)=>{
-    state.items.push(action.payload)
+    const idx=state.items.findIndex(p=>p.id === action.payload.id)
+    if(idx != -1) state.items[idx]=action.payload
   },
 }
 })
