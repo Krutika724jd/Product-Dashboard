@@ -12,8 +12,11 @@ reducers:{
   },
   deleteProduct:(state,action)=>{
     state.items=state.items.filter(item=>item.id !== action.payload)
-  }
+  },
+  updateProduct:(state,action)=>{
+    state.items.push(action.payload)
+  },
 }
 })
-export const {addProduct,deleteProduct} = productsSlice.actions;
+export const {addProduct,deleteProduct,updateProduct} = productsSlice.actions;
 export default productsSlice.reducer;
