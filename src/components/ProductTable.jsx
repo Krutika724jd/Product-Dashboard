@@ -1,7 +1,7 @@
 const EMOJI = {
   Electronics: '🎧', Clothing: '👕', 'Home & Kitchen': '🏠',
   Sports: '⚽', Books: '📚', Beauty: '💄', Toys: '🧸', Automotive: '🚗'
-}.Automotive.at
+}
 const TABLEHEADER=['Product', 'Category', 'Price', 'Stock', 'Status', 'Actions'];
 export default function ProductTable({products,onEdit}){
     return(
@@ -18,9 +18,9 @@ export default function ProductTable({products,onEdit}){
             <tbody>
                 {products.map(product=>(
                     <tr>
-                     <td>
+                     <td key={product.id}>
                        <div className="flex gap-3 items-center">
-                        <div className="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-lg">{ EMOJI[product.category] || '📦'}</div>
+                        <div className=" ml-3 w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-lg">{ EMOJI[product.category] || '📦'}</div>
                         <div>
                             <div>{product.name}</div>
                             <div>{product.sku}</div>
@@ -33,7 +33,7 @@ export default function ProductTable({products,onEdit}){
                      <td>{product.status}</td>
                       {/* Actions */}
                     <td className="px-4 py-3" onClick={e => e.stopPropagation()}>
-                    <button onClick={() => onEdit(product)} className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100 mr-1">✏️</button>
+                    <button onClick={()=>onEdit(product)} className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100 mr-1">✏️</button>
                     <button className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100">🗑️</button>
               </td>
                     </tr>

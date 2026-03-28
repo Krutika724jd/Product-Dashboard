@@ -2,9 +2,13 @@ import { useSelector } from "react-redux"
 import KpiCard from "../components/KpiCard";
 import { useState } from "react";
 import ProductTable from "../components/ProductTable";
+import ProductModel from "../components/ProductModel";
 
 const Dashboard = () => {
   const products=useSelector(state=>state.products.items);
+  const [modalOpen, setModalOpen] = useState(false)
+  const [editingProduct, setEditing]  = useState(null);
+  const openEdit=(product)=>{ setEditing(product); setModalOpen(true)}
  const totalProducts=products.length;
  //totalValue=sum of price × stock 
  //acc => the result of previous value
@@ -77,7 +81,13 @@ const Dashboard = () => {
       <option value="stock">Stock</option>
      </select>
 
-     <ProductTable products={filteredItems} onEdit={(p) => console.log(p)}/>
+     <ProductTable products={filteredItems} onEdit={openEdit}/>
+      {modalOpen &&(
+        <ProductModel
+        product={editingProduct}
+        onClose={() => setModalOpen(false)}
+        />
+      )}
     </>
   )
 }
