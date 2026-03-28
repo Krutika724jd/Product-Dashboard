@@ -64,11 +64,11 @@ const MainLayout = () => {
           </h2>
 
           {/* Right side */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" onClick={()=>navigate("/dashboard/settings")}>
             <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold">
               A
             </div>
-            <span className="text-sm text-gray-600">Admin</span>
+            <span className="text-sm text-gray-600" >Admin</span>
           </div>
         </div>
     {/*Page Title*/}
