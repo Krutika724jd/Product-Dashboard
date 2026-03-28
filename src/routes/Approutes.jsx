@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Analytics from '../pages/Analytics';
 import Categories from '../pages/Categories';
 import Orders from '../pages/Orders';
+import Settings from '../pages/Settings';
 
 const Approutes = () => {
   return (
@@ -26,7 +27,7 @@ const Approutes = () => {
          <Route path="analytics" element={<Analytics />} />
          <Route path="categories" element={<Categories />} />
          <Route path="orders" element={<Orders />} />
-         <Route path="settings" element={<Products />} />
+         <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>
   )
