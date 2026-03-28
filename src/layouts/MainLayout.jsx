@@ -60,9 +60,9 @@ const MainLayout = () => {
         <div className="h-16 bg-white border-b border-gray-200 px-6 flex items-center justify-between">
           
           {/* Page Title */}
-          <h2 className="text-lg font-semibold text-gray-800">
-            {location.pathname === '/dashboard/products' ? 'Products' : 'Dashboard'}
-          </h2>
+         <h2 className="hidden md:block text-base font-semibold text-gray-800">
+        {navLinks.find(l => l.to === location.pathname)?.label || 'Dashboard'}
+         </h2>
 
           {/* Right side */}
           <div className=" hidden lg:flex items-center gap-3" onClick={()=>navigate("/dashboard/settings")}>
