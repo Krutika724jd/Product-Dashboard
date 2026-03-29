@@ -74,12 +74,14 @@ function handleSave(){
                <div className="">
                 <label className="uppercase text-xs text-gray-400">Price</label>
                 <input
+                value={form.price}
                 onChange={(e)=>set('price',e.target.value)}
                 className="w-full border border-gray-400 rounded-lg outline-none p-2 focus:focus:border-blue-400 shadow-md"/>
                </div>
                <div className="">
                 <label className="uppercase text-xs text-gray-400">stock</label>
                 <input
+                value={form.stock}
                 onChange={(e)=>set('stock',e.target.value)}
                 className="w-full border border-gray-400 rounded-lg outline-none p-2 focus:focus:border-blue-400 shadow-md"/>
                </div>
