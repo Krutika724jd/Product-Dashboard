@@ -1,9 +1,10 @@
+
 const EMOJI = {
   Electronics: '🎧', Clothing: '👕', 'Home & Kitchen': '🏠',
   Sports: '⚽', Books: '📚', Beauty: '💄', Toys: '🧸', Automotive: '🚗'
 }
 const TABLEHEADER=['Product', 'Category', 'Price', 'Stock', 'Status', 'Actions'];
-export default function ProductTable({products,onEdit}){
+export default function ProductTable({products,onEdit,onDelete}){
     return(
         <div className="mt-4 bg-white border border-gray-200 rounded-lg overflow-x-scroll lg:overflow-hidden">
            <table className="w-full">
@@ -34,7 +35,7 @@ export default function ProductTable({products,onEdit}){
                       {/* Actions */}
                     <td className="px-4 py-3" onClick={e => e.stopPropagation()}>
                     <button onClick={()=>onEdit(product)} className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100 mr-1">✏️</button>
-                    <button className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100">🗑️</button>
+                    <button className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100" onClick={()=> onDelete(product.id)}>🗑️</button>
               </td>
                     </tr>
                 ))}

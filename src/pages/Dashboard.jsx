@@ -1,11 +1,13 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import KpiCard from "../components/KpiCard";
 import { useState } from "react";
 import ProductTable from "../components/ProductTable";
 import ProductModel from "../components/ProductModel";
+import { deleteProduct } from "../features/products/productsSlice";
 
 const Dashboard = () => {
   const products=useSelector(state=>state.products.items);
+  const dispatch=useDispatch()
   const [modalOpen, setModalOpen] = useState(false)
   const [editingProduct, setEditing]  = useState(null);
   const openEdit=(product)=>{ setEditing(product); setModalOpen(true)}
@@ -31,6 +33,12 @@ const Dashboard = () => {
   }
   
 )
+
+  const handleDelete=(id)=>{
+   if (confirm('Are you sure you want to delete this product?')) {
+      dispatch(deleteProduct(id))
+    }
+  }
   console.log({filteredItems,sortBy})
   return (
     <>
@@ -81,7 +89,7 @@ const Dashboard = () => {
       <option value="stock">Stock</option>
      </select>
 
-     <ProductTable products={filteredItems} onEdit={openEdit}/>
+     <ProductTable products={filteredItems} onEdit={openEdit} onDelete={handleDelete}/>
       {modalOpen &&(
         <ProductModel
         product={editingProduct}
