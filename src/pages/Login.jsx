@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { login } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../utils/auth'
+
 const Login = () => {
   const navigate=useNavigate()
   const[email,setEmail]=useState('');
   const[password,setPassword]=useState('');
-  const [error, setError]= useState('')
+  const [error, setError]= useState('');
+  // 👇 if already logged in, skip login page
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate('/dashboard')
+    }
+  }, [])
    const handleLogin=(e)=>{
     e.preventDefault()
     const success = login(email, password)
