@@ -46,7 +46,7 @@ const Analytics = () => {
     //console.log(top5Products,filtered)
   return (
     <div className="lg:px-6 overflow-hidden">
-     <div className="text-xl font-semibold mb-6">Analytics</div>
+     <div className="text-xl font-semibold mb-6 dark:text-gray-100">Analytics</div>
      <div className="grid lg:grid-cols-2 border gap-6">
         <div className="border border-gray-300 bg-white rounded-md p-2 lg:p-4 overflow-hidden">
            <div className="uppercase text-xs text-gray-500">Products by category</div>
