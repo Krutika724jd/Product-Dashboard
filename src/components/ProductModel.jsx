@@ -37,7 +37,7 @@ function handleSave(){
     <div className="border fixed inset-0 bg-black/40  z-50 flex items-center justify-center"
     onClick={onClose}>
         <div onClick={e => e.stopPropagation()}
-        className="bg-white rounded-xl p-6 w-[500px] max-h-[90vh] overflow-y-auto">
+        className="bg-white rounded-xl border p-6 w-[500px] max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-5">
               <h2 className="text-xl font-semibold mb-6">{product ? 'Edit Product' : 'Add New Product'} </h2>
               <button 
