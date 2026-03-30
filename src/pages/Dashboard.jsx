@@ -43,26 +43,6 @@ const Dashboard = () => {
   return (
     <>
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      {/* <div className="border border-gray-400 rounded-lg flex flex-col gap-2 w-[25%]  p-4 bg-white">
-        <div>TOTAL PRODUCTS</div>
-        <div className="font-semibold text-4xl">{totalProducts}</div>
-        <div>12% vs last month</div>
-      </div>
-        <div className="border border-gray-400 rounded-lg flex flex-col w-[25%] gap-2 p-4 bg-white">
-        <div>INVENTORY VALUE</div>
-        <div className="font-semibold text-4xl">{totalValue}</div>
-        <div>12% vs last month</div>
-      </div>
-        <div className="border border-gray-400 rounded-lg flex flex-col w-[25%] gap-2 p-4 bg-white">
-        <div>OUT OF STOCK</div>
-        <div className="font-semibold text-4xl">{outOfStock.length}</div>
-        <div>12% vs last month</div>
-      </div>
-        <div className="border border-gray-400 rounded-lg flex flex-col gap-2 w-[25%] gap-2 p-4 bg-white">
-        <div>CATEGORIES</div>
-        <div className="font-semibold text-4xl">{categories}</div>
-        <div>across all products</div>
-      </div> */}
     <KpiCard label="TOTAL PRODUCTS" value={totalProducts} subText="↑ 12% vs last month"/>
     <KpiCard label="INVENTORY VALUE" value={totalValue} subText="↑ 8.3% total worth"/>
     <KpiCard label="OUT OF STOCK" value={outOfStock} subText="↑ 3 since last week"/>
@@ -73,8 +53,8 @@ const Dashboard = () => {
       {filters.map(filter=>(
         <button key={filter} className={`lg:px-4 lg:py-2 p-2 rounded-lg text-sm font-medium border transition-all
         ${activeFilter === filter
-          ? 'bg-blue-600 text-white border-blue-600'
-          : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'
+         ? 'bg-blue-600 text-white border-blue-600'
+         : 'bg-white dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-400'
         }`}
         onClick={()=>setActiveFilter(filter)}>{filter}</button>
       ))}
@@ -82,7 +62,7 @@ const Dashboard = () => {
 
      {/* sort byt filter*/}
 
-     <select className="mt-4 w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-600 text-sm font-medium" value={sortBy} onChange={(e)=>setSortBy(e.target.value)}>
+     <select className="mt-4 w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-600 dark:text-gray-300 dark:bg-[#1a1a1a] text-sm font-medium" value={sortBy} onChange={(e)=>setSortBy(e.target.value)}>
       <option value="name">Sort By: Name</option>
       <option value="price-asc">Price: Low → High</option>
       <option value="price-desc">Price: High → Low</option>

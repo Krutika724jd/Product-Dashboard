@@ -17,7 +17,7 @@ const Categories = () => {
  console.log(maxCount)
   return (
     <div className="px-6">
-      <div className="text-xl font-semibold mb-6">Categories</div>
+      <div className="text-xl font-semibold mb-6 dark:text-gray-100">Categories</div>
       <div className="grid lg:grid-cols-4 gap-4">
         {Object.entries(categories).map(([category, count]) => (
           <div key={category} className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-all cursor-pointer">

@@ -35,7 +35,7 @@ const Products = () => {
   return (
     <div>
      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">Products</h2>
+        <h2 className="text-xl font-semibold dark:text-gray-100">Products</h2>
         <button
           onClick={openAdd}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-all"
