@@ -22,8 +22,8 @@ function ProductModel({product,onClose}) {
   }
 }, [product])
 
-function handleSave(){
-     if (!form.name || !form.sku || !form.price || !form.stock) {
+async function handleSave(){
+    if (!form.name || !form.sku || !form.price || !form.stock) {
     alert('Please fill all required fields!')
     return
   }
@@ -31,7 +31,20 @@ function handleSave(){
         price:Number(form.price),
         stock:Number(form.stock)
     }
-    product?dispatch(updateProduct(data)):dispatch(addProduct(data))
+      try {
+    if (product) {
+      await dispatch(updateProduct(data)).unwrap()
+      alert("Product updated successfully")
+    } else {
+      await dispatch(addProduct(data)).unwrap()
+      alert("Product added successfully");
+      onClose()
+    }
+  } catch (err) {
+    console.error(err)
+    alert("Something went wrong")
+  }
+
 }
   return (
     <div className="border fixed inset-0 bg-black/40  z-50 flex items-center justify-center"

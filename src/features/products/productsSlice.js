@@ -24,8 +24,10 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../api/api"; // your axios instance
-
+// createAsyncthunk is helper functon in rtk that handles async operations like apicalls
+// it dispacyhes lifecycle action(pending, fullfilled, rejected)
 // Fetch all products from API
+// Redux Thunk = middleware
 export const fetchProducts = createAsyncThunk("products/fetchAll", async () => {
   const res = await API.get("/products", {
       headers: {
