@@ -14,11 +14,19 @@ router.get('/:id', async (req, res) => {
   res.json(item);
 });
 
-// POST create item
 router.post('/', async (req, res) => {
-  const newItem = new Item(req.body);
-  const saved = await newItem.save();
-  res.status(201).json(saved);
+  try {
+    const newItem = new Item(req.body);
+
+    const saved = await newItem.save();
+
+    res.status(201).json(saved);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to create product",
+      error: error.message
+    });
+  }
 });
 
 // PUT update item
