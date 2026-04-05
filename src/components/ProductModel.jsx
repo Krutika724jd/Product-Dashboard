@@ -28,13 +28,16 @@ async function handleSave(){
     return
   }
     const data={...form,
+        id:product._id,
         price:Number(form.price),
         stock:Number(form.stock)
     }
+    console.log(data)
       try {
     if (product) {
-      await dispatch(updateProduct(data)).unwrap()
-      alert("Product updated successfully")
+      await dispatch(updateProduct({id:data.id,data})).unwrap()
+      alert("Product updated successfully");
+      onClose()
     } else {
       await dispatch(addProduct(data)).unwrap()
       alert("Product added successfully");
