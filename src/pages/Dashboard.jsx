@@ -1,15 +1,24 @@
 import { useDispatch, useSelector } from "react-redux"
 import KpiCard from "../components/KpiCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductTable from "../components/ProductTable";
 import ProductModel from "../components/ProductModel";
-import { deleteProduct } from "../features/products/productsSlice";
+import { deleteProduct, fetchProducts } from "../features/products/productsSlice";
 
 const Dashboard = () => {
-  const products=useSelector(state=>state.products.items);
-  const dispatch=useDispatch()
+  // const products=useSelector(state=>state.products.items);
+  
+  const dispatch=useDispatch();
+  const { products, loading } = useSelector((state) => state.products);
   const [modalOpen, setModalOpen] = useState(false)
   const [editingProduct, setEditing]  = useState(null);
+  const [activeFilter, setActiveFilter] = useState('All')
+  const [sortBy, setSortBy]= useState('name')
+   // Fetch products when component loads
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+  if (loading) return <p>Loading...</p>;
   const openEdit=(product)=>{ setEditing(product); setModalOpen(true)}
  const totalProducts=products.length;
  //totalValue=sum of price × stock 
@@ -20,8 +29,6 @@ const Dashboard = () => {
 //  const totalCategory=Object.values(categories)
   console.log(products,categories,outOfStock,totalValue)
 
-  const [activeFilter, setActiveFilter] = useState('All')
-  const [sortBy, setSortBy]= useState('name')
   const filters = ['All', 'Active', 'Draft', 'Out of Stock', 'In Review'];
 
   const filteredItems=products.filter(product=>activeFilter === 'All'||product.status=== activeFilter)
