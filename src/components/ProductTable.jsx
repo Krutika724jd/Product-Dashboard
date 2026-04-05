@@ -19,7 +19,7 @@ export default function ProductTable({products,onEdit,onDelete}){
             <tbody>
                 {products.map(product=>(
                     <tr>
-                     <td key={product.id}>
+                     <td key={product._id}>
                        <div className="flex gap-3 items-center">
                         <div className=" ml-3 w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-lg">{ EMOJI[product.category] || '📦'}</div>
                         <div>
@@ -35,7 +35,7 @@ export default function ProductTable({products,onEdit,onDelete}){
                       {/* Actions */}
                     <td className="px-4 py-3" onClick={e => e.stopPropagation()}>
                     <button onClick={()=>onEdit(product)} className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100 mr-1">✏️</button>
-                    <button className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100" onClick={()=> onDelete(product.id)}>🗑️</button>
+                    <button className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100" onClick={()=> onDelete(product._id)}>🗑️</button>
               </td>
                     </tr>
                 ))}
