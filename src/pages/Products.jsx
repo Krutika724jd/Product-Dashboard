@@ -14,8 +14,7 @@ const BADGE = {
   'In Review':    'bg-blue-100 text-blue-600',
 }
 const Products = () => {
-  const products=useSelector((state)=>state.products.items);
-  console.log({products})
+  const { products, loading } = useSelector((state) => state.products);
   const dispatch=useDispatch()
   const[search,setSearch]=useState('');
   const [modalOpen, setModalOpen] = useState(false)
@@ -31,6 +30,7 @@ const Products = () => {
       dispatch(deleteProduct(id))
     }
   }
+  if (loading) return <p>Loading...</p>;
   console.log(products)
   return (
     <div>

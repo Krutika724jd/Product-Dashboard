@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import KpiCard from "../components/KpiCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ProductTable from "../components/ProductTable";
 import ProductModel from "../components/ProductModel";
-import { deleteProduct, fetchProducts } from "../features/products/productsSlice";
+import { deleteProduct } from "../features/products/productsSlice";
 
 const Dashboard = () => {
   // const products=useSelector(state=>state.products.items);
@@ -14,10 +14,6 @@ const Dashboard = () => {
   const [editingProduct, setEditing]  = useState(null);
   const [activeFilter, setActiveFilter] = useState('All')
   const [sortBy, setSortBy]= useState('name')
-   // Fetch products when component loads
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
   if (loading) return <p>Loading...</p>;
   const openEdit=(product)=>{ setEditing(product); setModalOpen(true)}
  const totalProducts=products.length;
