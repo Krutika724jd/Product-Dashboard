@@ -22,16 +22,32 @@ function ProductModel({product,onClose}) {
   }
 }, [product])
 
-function handleSave(){
-     if (!form.name || !form.sku || !form.price || !form.stock) {
+async function handleSave(){
+    if (!form.name || !form.sku || !form.price || !form.stock) {
     alert('Please fill all required fields!')
     return
   }
     const data={...form,
+        id:product._id,
         price:Number(form.price),
         stock:Number(form.stock)
     }
-    product?dispatch(updateProduct(data)):dispatch(addProduct(data))
+    console.log(data)
+      try {
+    if (product) {
+      await dispatch(updateProduct({id:data.id,data})).unwrap()
+      alert("Product updated successfully");
+      onClose()
+    } else {
+      await dispatch(addProduct(data)).unwrap()
+      alert("Product added successfully");
+      onClose()
+    }
+  } catch (err) {
+    console.error(err)
+    alert("Something went wrong")
+  }
+
 }
   return (
     <div className="border fixed inset-0 bg-black/40  z-50 flex items-center justify-center"

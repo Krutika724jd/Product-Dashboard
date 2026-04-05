@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link,Outlet, useNavigate } from 'react-router-dom'
 import { logout } from '../utils/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProducts } from '../features/products/productsSlice'
 const MainLayout = () => {
-  const navigate=useNavigate()
-  const [isMenuOpen,setMenuOpen]=useState(false)
+ const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { products } = useSelector(state => state.products)
+
+  const [isMenuOpen, setMenuOpen] = useState(false)
+ // Fetch products when component loads
+  useEffect(() => {
+    if (products.length === 0) {
+      dispatch(fetchProducts())
+    }
+  }, [dispatch, products.length])
   const handleLogout=()=>{
     logout();
     navigate("/")
