@@ -24,3 +24,4 @@ app.get('/', (req, res) => res.json({ message: 'API is running!' }));
 //Vercel serverless doesn't use app.listen.
 // const PORT = process.env.PORT || 5000;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = app;
