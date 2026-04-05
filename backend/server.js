@@ -21,7 +21,10 @@ app.use('/api/products', require('./routes/products'));
 // Test route
 app.get('/', (req, res) => res.json({ message: 'API is running!' }));
 
-//Vercel serverless doesn't use app.listen.
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// This works for BOTH local and Vercel 
+if (require.main === module) {
+  // Running locally → start the server
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
 module.exports = app;
