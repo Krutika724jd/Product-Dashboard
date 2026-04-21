@@ -9,7 +9,21 @@ function Settings() {
   const[notifications,setNotifications]=useState({
     email:true,stock:false,orders:false
   })
-  const [theme,setTheme]=useState('Light');
+  const [selectedTheme, setSelectedTheme] = useState(
+  localStorage.getItem('theme') || 'Light'
+)
+
+const handleThemeChange = (t) => {
+  setSelectedTheme(t)  // 👈 update local state for UI
+  localStorage.setItem('theme', t)
+  const root = document.documentElement
+  if (t === 'Dark') root.classList.add('dark')
+  else if (t === 'Light') root.classList.remove('dark')
+  else {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    isDark ? root.classList.add('dark') : root.classList.remove('dark')
+  }
+}
   const [density,setDensity]=useState('Comfortable')
   const[saved,setSaved]=useState(false);
   const tabs = ['Profile', 'Notifications', 'Security', 'Appearance'];
@@ -23,14 +37,14 @@ function Settings() {
     console.log(form,notifications)
   return (
     <div className=" lg:overflow-hidden">
-        <div className="text-xl font-semibold mb-6">Settings</div>
+        <div className="text-xl font-semibold mb-6 dark:text-gray-100">Settings</div>
         <div className="grid lg:grid-cols-[200px_1fr] gap-6 ">
             <div className="flex lg:flex-col lg:gap-1 ">
                {tabs.map(tab=>(
                 <button  
                 onClick={()=> setActiveTab(tab)}
                 className={`lg:px-4 py-2.5 px-2 rounded-md text-left transtion-all ${activeTab === tab
-                  ? 'bg-blue-50 text-blue-600 font-medium'
+                  ? 'bg-blue-50 text-blue-600 font-medium dark:bg-[#121212]'
                   : 'text-gray-500 hover:bg-gray-100'}`}
                 >{tab}</button>
                ))}
@@ -135,8 +149,8 @@ function Settings() {
                     { name: 'Dark',bg: 'bg-gray-900'  },
                     { name: 'System', bg: 'bg-gradient-to-br from-gray-50 to-gray-900' },
                   ].map(({name,bg})=>(
-                    <div key={name} className={` p-4  border rounded-md ${theme === name ? 'border-blue-400 bg-blue-50':'border-gray-200 hover:border-gray-300'}`}
-                    onClick={()=>setTheme(name)}>
+                    <div key={name} className={` p-4  border rounded-md ${selectedTheme === name ? 'border-blue-400 bg-blue-50':'border-gray-200 hover:border-gray-300'}`}
+                    onClick={()=>handleThemeChange(name)}>
                        <div className={`h-16 w-full border rounded-md ${bg}`}></div>
                        <div className="text-center mt-2">{name}</div>
                     </div>

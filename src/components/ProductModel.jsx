@@ -22,22 +22,38 @@ function ProductModel({product,onClose}) {
   }
 }, [product])
 
-function handleSave(){
-     if (!form.name || !form.sku || !form.price || !form.stock) {
+async function handleSave(){
+    if (!form.name || !form.sku || !form.price || !form.stock) {
     alert('Please fill all required fields!')
     return
   }
     const data={...form,
+        id:product._id,
         price:Number(form.price),
         stock:Number(form.stock)
     }
-    product?dispatch(updateProduct(data)):dispatch(addProduct(data))
+    console.log(data)
+      try {
+    if (product) {
+      await dispatch(updateProduct({id:data.id,data})).unwrap()
+      alert("Product updated successfully");
+      onClose()
+    } else {
+      await dispatch(addProduct(data)).unwrap()
+      alert("Product added successfully");
+      onClose()
+    }
+  } catch (err) {
+    console.error(err)
+    alert("Something went wrong")
+  }
+
 }
   return (
     <div className="border fixed inset-0 bg-black/40  z-50 flex items-center justify-center"
     onClick={onClose}>
         <div onClick={e => e.stopPropagation()}
-        className="bg-white rounded-xl p-6 w-[500px] max-h-[90vh] overflow-y-auto">
+        className="bg-white rounded-xl border p-6 w-[500px] max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-5">
               <h2 className="text-xl font-semibold mb-6">{product ? 'Edit Product' : 'Add New Product'} </h2>
               <button 
@@ -74,12 +90,14 @@ function handleSave(){
                <div className="">
                 <label className="uppercase text-xs text-gray-400">Price</label>
                 <input
+                value={form.price}
                 onChange={(e)=>set('price',e.target.value)}
                 className="w-full border border-gray-400 rounded-lg outline-none p-2 focus:focus:border-blue-400 shadow-md"/>
                </div>
                <div className="">
                 <label className="uppercase text-xs text-gray-400">stock</label>
                 <input
+                value={form.stock}
                 onChange={(e)=>set('stock',e.target.value)}
                 className="w-full border border-gray-400 rounded-lg outline-none p-2 focus:focus:border-blue-400 shadow-md"/>
                </div>

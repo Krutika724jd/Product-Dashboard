@@ -17,7 +17,7 @@ function StatusCard({status,count}){
 }
 
 const Analytics = () => {
-    const products=useSelector(state=>state.products.items);
+    const { products, loading } = useSelector((state) => state.products);
     //by status
     const active=products.filter(product=>product.status === 'Active').length;
     const Draft=products.filter(product=>product.status === 'Draft').length
@@ -44,9 +44,10 @@ const Analytics = () => {
   .sort((a, b) => b.inventoryValue - a.inventoryValue) // descending
   .slice(0, 5);
     //console.log(top5Products,filtered)
+    if (loading) return <p>Loading...</p>;
   return (
     <div className="lg:px-6 overflow-hidden">
-     <div className="text-xl font-semibold mb-6">Analytics</div>
+     <div className="text-xl font-semibold mb-6 dark:text-gray-100">Analytics</div>
      <div className="grid lg:grid-cols-2 border gap-6">
         <div className="border border-gray-300 bg-white rounded-md p-2 lg:p-4 overflow-hidden">
            <div className="uppercase text-xs text-gray-500">Products by category</div>

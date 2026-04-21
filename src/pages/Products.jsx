@@ -14,8 +14,7 @@ const BADGE = {
   'In Review':    'bg-blue-100 text-blue-600',
 }
 const Products = () => {
-  const products=useSelector((state)=>state.products.items);
-  console.log({products})
+  const { products, loading } = useSelector((state) => state.products);
   const dispatch=useDispatch()
   const[search,setSearch]=useState('');
   const [modalOpen, setModalOpen] = useState(false)
@@ -26,16 +25,23 @@ const Products = () => {
   )
   const openAdd=()=>{ setEditing(null); setModalOpen(true)}
   const openEdit=(product)=>{ setEditing(product); setModalOpen(true)}
-  const handleDelete=(id)=>{
-   if (confirm('Are you sure you want to delete this product?')) {
-      dispatch(deleteProduct(id))
+  const handleDelete = async (id) => {
+  try {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+      await dispatch(deleteProduct(id)).unwrap();
+      alert("Product deleted successfully");
     }
+  } catch (err) {
+    console.error(err);
+    alert("Failed to delete product");
   }
+};
+  if (loading) return <p>Loading...</p>;
   console.log(products)
   return (
     <div>
      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">Products</h2>
+        <h2 className="text-xl font-semibold dark:text-gray-100">Products</h2>
         <button
           onClick={openAdd}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-all"
@@ -71,7 +77,7 @@ const Products = () => {
             <tr><td colSpan={6} className="text-center py-12 text-gray-400 text-sm">No Product Found</td></tr>
           ):(
             filtered.map(product=>(
-              <tr key={product.id} className="border-b border-gray-100 hover:bg-gray-50 transition-all">
+              <tr key={product._id} className="border-b border-gray-100 hover:bg-gray-50 transition-all">
                 <td >
                   <div className='flex gap-3 items-center'>
                     <div className=' ml-3 w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center text-lg'>{EMOJI[product.category] || '📦'}</div>
@@ -95,7 +101,7 @@ const Products = () => {
                         className="text-xs px-3 py-1.5 border border-gray-200 rounded-lg hover:bg-gray-100 transition-all"
                       >✏️ Edit</button>
                       <button
-                        onClick={() => handleDelete(product.id)}
+                        onClick={() => handleDelete(product._id)}
                         className="text-xs px-3 py-1.5 border border-red-100 text-red-500 rounded-lg hover:bg-red-50 transition-all"
                       >🗑️ Delete</button>
                     </div>

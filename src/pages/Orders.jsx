@@ -25,7 +25,7 @@ function Orders() {
   const cancelled=fakeOrders.filter(order=>order.status==='Cancelled').length;
   return (
     <div>
-        <div className="text-xl font-semibold mb-6">Orders</div>
+        <div className="text-xl font-semibold mb-6 dark:text-gray-100">Orders</div>
          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {[
           { label: 'Total Orders', value: total,     color: 'text-gray-800'   },

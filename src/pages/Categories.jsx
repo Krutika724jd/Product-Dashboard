@@ -6,7 +6,7 @@ const EMOJI = {
 }
 
 const Categories = () => {
-  const products = useSelector(s => s.products.items)
+  const { products, loading } = useSelector((state) => state.products);
 
   const categories = products.reduce((acc, p) => {
     acc[p.category] = (acc[p.category] || 0) + 1
@@ -15,9 +15,10 @@ const Categories = () => {
 
   const maxCount = Math.max(...Object.values(categories))
  console.log(maxCount)
+ if (loading) return <p>Loading...</p>;
   return (
     <div className="px-6">
-      <div className="text-xl font-semibold mb-6">Categories</div>
+      <div className="text-xl font-semibold mb-6 dark:text-gray-100">Categories</div>
       <div className="grid lg:grid-cols-4 gap-4">
         {Object.entries(categories).map(([category, count]) => (
           <div key={category} className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-all cursor-pointer">
