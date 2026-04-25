@@ -17,7 +17,8 @@ const Dashboard = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [editingProduct, setEditing]  = useState(null);
   const [activeFilter, setActiveFilter] = useState('All')
-  const [sortBy, setSortBy]= useState('name')
+  const [sortBy, setSortBy]= useState('name');
+  const[input,setInput]=useState("")
   if (loading) return <p>Loading...</p>;
   const openEdit=(product)=>{ setEditing(product); setModalOpen(true)}
  const totalProducts=products.length;
@@ -31,7 +32,11 @@ const Dashboard = () => {
 
   const filters = ['All', 'Active', 'Draft', 'Out of Stock', 'In Review'];
 
-  const filteredItems=products.filter(product=>activeFilter === 'All'||product.status=== activeFilter)
+  const filteredItems=products.filter(product=>{
+   const matchFilter=activeFilter === 'All'|| product.status=== activeFilter || product.category === 'All'  
+   const matchSearch=(product.name?.toLowerCase().includes(input?.toLowerCase()) || product.category?.toLowerCase().includes(input?.toLowerCase()));
+   return matchFilter && matchSearch;
+  })
   .sort((a,b)=>{
     if(sortBy === 'price-asc') return a.price-b.price
     if(sortBy === 'price-desc') return b.price-a.price
@@ -47,7 +52,7 @@ const Dashboard = () => {
       showToast({message:'Product deleted successfully!', type:'warning'})
     }
   }
-  console.log({filteredItems,sortBy})
+  console.log({filteredItems,sortBy,input})
   return (
     <>
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -69,13 +74,20 @@ const Dashboard = () => {
      </div>
 
      {/* sort byt filter*/}
-
-     <select className="mt-4 w-full px-3 py-2 rounded-lg border border-gray-400 text-gray-600 dark:text-gray-300 dark:bg-[#1a1a1a] text-sm font-medium" value={sortBy} onChange={(e)=>setSortBy(e.target.value)}>
+     <div className="flex w-full gap-4 overflow-hidden justify-between">
+      <input 
+      type="text" 
+      value={input}
+      className="w-[50%] px-3 py-2 mt-4 foucs:outline-none rounded-lg border border-gray-400" 
+      placeholder="Search By Category and Product Name" 
+      onChange={(e)=>{setInput(e.target.value)}}/>
+     <select className="mt-4 w-[20%] px-3 py-2 rounded-lg border border-gray-400 text-gray-600 dark:text-gray-300 dark:bg-[#1a1a1a] text-sm font-medium" value={sortBy} onChange={(e)=>setSortBy(e.target.value)}>
       <option value="name">Sort By: Name</option>
       <option value="price-asc">Price: Low → High</option>
       <option value="price-desc">Price: High → Low</option>
       <option value="stock">Stock</option>
      </select>
+     </div>
 
      <ProductTable products={filteredItems} onEdit={openEdit} onDelete={handleDelete}/>
       <ToastContainer toasts={toasts} removeToast={removeToast}/>
