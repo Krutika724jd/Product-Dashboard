@@ -5,7 +5,7 @@ const EMOJI = {
 }
 const TABLEHEADER=['Product', 'Category', 'Price', 'Stock', 'Status', 'Actions'];
 export default function ProductTable({products,onEdit,onDelete}){
-    return(
+    return( 
         <div className="mt-4 bg-white border border-gray-200 rounded-lg overflow-x-scroll lg:overflow-hidden">
            <table className="w-full">
             <thead>
@@ -16,8 +16,8 @@ export default function ProductTable({products,onEdit,onDelete}){
                     
                 </tr>
             </thead>
-            <tbody>
-                {products.map(product=>(
+            <tbody className={`${products.length === 0 ? 'flex items-center justify-center w-full':''}`}>
+                {products.length > 0 ? products.map(product=>(
                     <tr>
                      <td key={product._id}>
                        <div className="flex gap-3 items-center">
@@ -38,8 +38,10 @@ export default function ProductTable({products,onEdit,onDelete}){
                     <button className="text-xs px-2 py-1 rounded border border-gray-200 hover:bg-gray-100" onClick={()=> onDelete(product._id)}>🗑️</button>
               </td>
                     </tr>
-                ))}
+                )):
+                <div className="text-center">No Product Found.</div>}
             </tbody>
+            
            </table>
         </div>
     )
