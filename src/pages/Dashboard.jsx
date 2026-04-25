@@ -4,10 +4,14 @@ import { useState } from "react";
 import ProductTable from "../components/ProductTable";
 import ProductModel from "../components/ProductModel";
 import { deleteProduct } from "../features/products/productsSlice";
+import useToast from "../hooks/useToast";
+import ToastContainer from "../components/ToastContainer";
 
 const Dashboard = () => {
   // const products=useSelector(state=>state.products.items);
   
+  const{toasts,showToast,removeToast}=useToast();
+  console.group({toasts})
   const dispatch=useDispatch();
   const { products, loading } = useSelector((state) => state.products);
   const [modalOpen, setModalOpen] = useState(false)
@@ -40,6 +44,7 @@ const Dashboard = () => {
   const handleDelete=(id)=>{
    if (confirm('Are you sure you want to delete this product?')) {
       dispatch(deleteProduct(id))
+      showToast('Product deleted successfully!', 'success')
     }
   }
   console.log({filteredItems,sortBy})
@@ -73,6 +78,7 @@ const Dashboard = () => {
      </select>
 
      <ProductTable products={filteredItems} onEdit={openEdit} onDelete={handleDelete}/>
+      <ToastContainer toasts={toasts} removeToast={removeToast}/>
       {modalOpen &&(
         <ProductModel
         product={editingProduct}

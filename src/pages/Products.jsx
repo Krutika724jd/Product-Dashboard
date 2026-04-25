@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductModel from '../components/ProductModel';
 import { deleteProduct,addProduct } from '../features/products/productsSlice';
+import ToastContainer from '../components/ToastContainer';
+import useToast from '../hooks/useToast';
 const EMOJI = {
   Electronics: '🎧', Clothing: '👕', 'Home & Kitchen': '🏠',
   Sports: '⚽', Books: '📚', Beauty: '💄', Toys: '🧸', Automotive: '🚗'
@@ -15,6 +17,8 @@ const BADGE = {
 }
 const Products = () => {
   const { products, loading } = useSelector((state) => state.products);
+  const{toasts,showToast,removeToast}=useToast();
+  console.log({toasts})
   const dispatch=useDispatch()
   const[search,setSearch]=useState('');
   const [modalOpen, setModalOpen] = useState(false)
@@ -30,6 +34,7 @@ const Products = () => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       await dispatch(deleteProduct(id)).unwrap();
       alert("Product deleted successfully");
+      showToast('Product deleted successfully!', 'success')
     }
   } catch (err) {
     console.error(err);
@@ -112,12 +117,13 @@ const Products = () => {
           }
         </tbody>
       </table>
-
+     <ToastContainer toasts={toasts} removeToast={removeToast}/>
       {/* Modal */}
       {modalOpen && (
         <ProductModel
           product={editingProduct}
           onClose={() => setModalOpen(false)}
+          showToast={showToast}
         />
       )}
      </div>
