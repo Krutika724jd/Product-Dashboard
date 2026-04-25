@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { addProduct, updateProduct } from "../features/products/productsSlice"
+import useToast from "../hooks/useToast"
+import ToastContainer from "./ToastContainer"
 
  const CATEGORIES = ['Electronics','Clothing','Home & Kitchen','Sports','Books','Beauty','Toys','Automotive']
  const STATUSES   = ['Active', 'Draft', 'Out of Stock', 'In Review']
-function ProductModel({product,onClose}) {
+function ProductModel({product,onClose,showToast}) {
+  const{toasts,removeToast}=useToast()
     const dispatch=useDispatch()
     const [form, setForm] = useState({
     name: '', sku: '', category: 'Electronics',
@@ -36,11 +39,13 @@ async function handleSave(){
       try {
     if (product) {
       await dispatch(updateProduct({id:data.id,data})).unwrap()
-      alert("Product updated successfully");
+      //alert("Product updated successfully");
+      showToast({message:'Product updated successfully!', type:'success'})
       onClose()
     } else {
       await dispatch(addProduct(data)).unwrap()
-      alert("Product added successfully");
+      //alert("Product added successfully");
+      showToast({message:'Product added successfully!', type:'success'})
       onClose()
     }
   } catch (err) {
@@ -122,7 +127,7 @@ async function handleSave(){
             <button className="px-4 py-2 border border-gray-400 rounded-lg font-medium" onClick={()=>handleSave(product)}>Save Product</button>
            </div>
         </div>
-        
+        <ToastContainer toasts={toasts} removeToast={removeToast}/>
     </div>
   )
 }
