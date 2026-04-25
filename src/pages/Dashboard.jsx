@@ -44,7 +44,7 @@ const Dashboard = () => {
   const handleDelete=(id)=>{
    if (confirm('Are you sure you want to delete this product?')) {
       dispatch(deleteProduct(id))
-      showToast('Product deleted successfully!', 'success')
+      showToast({message:'Product deleted successfully!', type:'warning'})
     }
   }
   console.log({filteredItems,sortBy})
