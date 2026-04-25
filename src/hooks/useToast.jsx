@@ -8,7 +8,7 @@ function useToast() {
     setToasts(t=>[...t,{id,message,type}])
  }
  const removeToast=(id)=>{
-    setToasts(toasts.filter(t=>t.id != id))
+    setToasts(prev=>prev.filter(t=>t.id != id))
  }
   return {toasts,showToast,removeToast}
 }

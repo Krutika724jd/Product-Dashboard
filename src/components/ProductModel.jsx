@@ -39,11 +39,13 @@ async function handleSave(){
       try {
     if (product) {
       await dispatch(updateProduct({id:data.id,data})).unwrap()
-      alert("Product updated successfully");
+      //alert("Product updated successfully");
+      showToast({message:'Product updated successfully!', type:'success'})
       onClose()
     } else {
       await dispatch(addProduct(data)).unwrap()
-      alert("Product added successfully");
+      //alert("Product added successfully");
+      showToast({message:'Product added successfully!', type:'success'})
       onClose()
     }
   } catch (err) {

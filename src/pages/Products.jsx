@@ -33,8 +33,8 @@ const Products = () => {
   try {
     if (window.confirm('Are you sure you want to delete this product?')) {
       await dispatch(deleteProduct(id)).unwrap();
-      alert("Product deleted successfully");
-      showToast('Product deleted successfully!', 'success')
+      //alert("Product deleted successfully");
+      showToast({message:'Product deleted successfully!', type:'warning'})
     }
   } catch (err) {
     console.error(err);
