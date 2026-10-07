@@ -26,4 +26,13 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  // Backend / Node files
+  {
+    files: ['server/**/*.js', 'backend/**/*.js'], // adjust to your actual backend folder
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'commonjs', // or 'module' if backend uses import/export
+      globals: globals.node,
+    },
+  },
 ])
