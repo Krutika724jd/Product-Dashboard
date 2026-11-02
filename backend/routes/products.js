@@ -5,8 +5,13 @@ const mongoose = require('mongoose');
 
 // GET all items
 router.get('/', async (req, res) => {
-  const items = await Item.find();
-  res.json(items);
+  try {
+    const items = await Item.find();
+    res.json(items);
+  } catch (error) {
+    console.error('Error fetching items:', error);
+    res.status(500).json({ error: 'Failed to fetch products' });
+  }
 });
 
 // GET single item
